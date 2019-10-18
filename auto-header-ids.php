@@ -10,7 +10,7 @@
  * Automatically add IDs to headings such as <h2></h2>
  */
 function auto_id_headings( $content ) {
-    $content = preg_replace_callback( '/(\<h[1-6](.*?))\>(.*)(<\/h[1-6]>)/i', function( $matches ) {
+    $content = preg_replace_callback( '/(\<h[1-6](.*?))\>([^<]*)(<\/h[1-6]>)/im', function( $matches ) {
         if ( ! stripos( $matches[0], 'id=' ) ) :
             $heading_link = '<a href="#' . sanitize_title( $matches[3] ) . '" class="heading-link"><span class="dashicons dashicons-admin-links"></span></a>';
             $matches[0] = $matches[1] . $matches[2] . ' id="' . sanitize_title( $matches[3] ) . '">' . $heading_link . $matches[3] . $matches[4];
